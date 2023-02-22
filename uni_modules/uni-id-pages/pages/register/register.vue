@@ -31,7 +31,6 @@
 			<uni-forms-item>
 				<uni-captcha ref="captcha" scene="register" v-model="formData.captcha" />
 			</uni-forms-item>
-			<uni-id-pages-agreements scope="register" ref="agreements"></uni-id-pages-agreements>
 			<button class="uni-btn" type="primary" @click="submit">注册</button>
 			<button @click="navigateBack" class="register-back">返回</button>
 			<match-media :min-width="690">
@@ -63,7 +62,7 @@
 					nickname: "",
 					password: "",
 					password2: "",
-					captcha: ""
+					captcha: "",
 				},
 				rules,
 				focusUsername: false,
@@ -113,13 +112,16 @@
 				})
 			},
 			submitForm(params) {
-				uniIdCo.registerUser(this.formData).then(e => {
+				uniIdCo.registerUser({
+						...this.formData,
+						avatar: ''
+					}).then(e => {
 						uni.showToast({
 							title: '注册成功',
 							icon: 'success'
 						})
 						uni.navigateTo({
-							url: '/uni_modules/uni-id-pages/pages/login//login-withpwd'
+							url: '/uni_modules/uni-id-pages/pages/login/login-withpwd'
 						})
 					})
 					.catch(e => {

@@ -1,3 +1,5 @@
+## 1.1.4（2023-02-21）
+- 修复 部分情况下 `uniIdRedirectUrl` 参数无效的问题
 ## 1.1.3（2023-02-20）
 - 修复 非微信小程序端报`TypeError: uni.hideHomeButton is not a function`的问题
 ## 1.1.2（2023-02-10）

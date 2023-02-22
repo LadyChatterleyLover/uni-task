@@ -6,7 +6,7 @@
 	"passwordStrength": "medium",
 	"tokenSecret": "dudu-task",
 	"requestAuthSecret": "",
-	"tokenExpiresIn": 86400,
+	"tokenExpiresIn": 2592000,
 	"tokenExpiresThreshold": 3600,
 	"passwordErrorLimit": 6,
 	"passwordErrorRetryTime": 3600,

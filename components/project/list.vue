@@ -1,17 +1,17 @@
 <template>
 	<view style="background: #f8f8f8" class="h-screen">
-		<view class="flex justify-end mr-10">
+		<view class="flex justify-end mr-10 mb-10">
 			<view class="px-8 py-6 text-white text-sm rounded-xs" style="background: #409eff;" @click="add">创建项目
 			</view>
 		</view>
-		<uni-search-bar placeholder="搜索项目" cancelButton="none" radius="999" bgColor="#fff" v-model="value"
-			@confirm="confirm" />
+		<u-search placeholder="搜索项目" :show-action="false" bgColor="#fff" v-model="value" @search="confirm" />
 		<view v-if="!projectList.length" class="mr-5 mt-5">
 			<view class="flex justify-center text-lg mt-10">暂无项目</view>
 		</view>
 		<view v-else>
 			<view class="mt-15">
-				<view v-for="item in projectList" :key="item._id" class="rounded-lg m-16 p-16 bg-white text-sm">
+				<view v-for="item in projectList" :key="item._id" class="rounded-lg m-16 p-16 bg-white text-sm"
+					@click="goDetail(item)">
 					{{item.name}}
 				</view>
 			</view>
@@ -37,7 +37,6 @@
 	const getData = () => {
 		projectCollection.get().then(res => {
 			projectList.value = res.result.data
-			console.log(projectList.value)
 		})
 	}
 
@@ -70,8 +69,13 @@
 					})
 					return
 				}
+				const userResult = await db.collection('uni-id-users').where('_id==$cloudEnv_uid').field(
+					'_id,username').get()
+				const projectUsers = []
+				projectUsers.push(userResult.result.data[0])
 				const result = await projectCollection.add({
-					name: content
+					name: content,
+					projectUsers
 				})
 				if (result.errMsg) {
 					uni.showToast({
@@ -98,7 +102,12 @@
 		}).get().then(res => {
 			projectList.value = res.result.data
 		})
+	}
 
+	const goDetail = (item: ProjectItem) => {
+		uni.navigateTo({
+			url: '/pages/projectDetail/projectDetail?item=' + JSON.stringify(item)
+		})
 	}
 
 	onMounted(() => {

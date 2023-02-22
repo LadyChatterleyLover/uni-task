@@ -1,0 +1,36 @@
+{
+	"bsonType": "object",
+	"required": [],
+	"permission": {
+		"read": true,
+		"create": true,
+		"update": true,
+		"delete": true
+	},
+	"properties": {
+		"_id": {
+			"description": "ID，系统自动生成"
+		},
+		"name": {
+			"description": "列表名称",
+			"bsonType": "string"
+		},
+		"projectId": {
+			"description": "关联项目",
+			"bsonType": "string",
+			"foreignKey": "project._id"
+		},
+		"createTime": {
+			"description": "创建时间",
+			"bsonType": "string",
+			"defaultValue": {
+				"$env": "now"
+			}
+		},
+		"color": {
+			"description": "背景颜色",
+			"bsonType": "string",
+			"defaultValue": "#f2f3f5"
+		}
+	}
+}

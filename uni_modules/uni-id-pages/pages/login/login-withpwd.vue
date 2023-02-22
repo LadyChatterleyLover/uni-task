@@ -17,8 +17,6 @@
 			</uni-forms-item>
 		</uni-forms>
 		<uni-captcha v-if="needCaptcha" focus ref="captcha" scene="login-by-pwd" v-model="captcha" />
-		<!-- 带选择框的隐私政策协议组件 -->
-		<uni-id-pages-agreements scope="login" ref="agreements"></uni-id-pages-agreements>
 		<button class="uni-btn" type="primary" @click="pwdLogin">登录</button>
 		<!-- 忘记密码 -->
 		<view class="link-box">
@@ -123,13 +121,7 @@
 				}
 
 				uniIdCo.login(data).then(e => {
-					uni.showToast({
-						title: '登录成功',
-						icon: 'success'
-					})
-					uni.switchTab({
-						url: '/pages/index/index'
-					})
+					this.loginSuccess(e)
 				}).catch(e => {
 					if (e.errCode == 'uni-id-captcha-required') {
 						this.needCaptcha = true

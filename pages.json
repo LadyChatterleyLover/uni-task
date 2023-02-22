@@ -1,4 +1,7 @@
 {
+	"easycom": {
+		"^u-(.*)": "@/uni_modules/uview-plus/components/u-$1/u-$1.vue"
+	},
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
 			"path": "pages/index/index",
@@ -28,6 +31,12 @@
 			"path": "pages/more/more",
 			"style": {
 				"navigationBarTitleText": "更多"
+			}
+		},
+		{
+			"path": "pages/projectDetail/projectDetail",
+			"style": {
+				"navigationBarTitleText": "项目详情"
 			}
 		},
 		{
@@ -129,7 +138,18 @@
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
-	"uniIdRouter": {},
+	"uniIdRouter": {
+		"loginPage": "pages/index/index",
+		"needLogin": [
+			"pages/index/.*",
+			"pages/message/.*",
+			"pages/more/.*",
+			"pages/my/.*",
+			"pages/project/.*",
+			"pages/projectDetail/.*"
+		],
+		"resToLogin": true
+	},
 	"tabBar": {
 		"color": "#606266",
 		"selectedColor": "#84c56a",

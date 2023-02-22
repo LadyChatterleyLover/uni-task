@@ -2,9 +2,9 @@
 	"bsonType": "object",
 	"permission": {
 		"read": true,
-		"create": "'CREATE_UNI_ID_USERS' in auth.permission",
-		"update": "doc._id == auth.uid || 'UPDATE_UNI_ID_USERS' in auth.permission",
-		"delete": "'DELETE_UNI_ID_USERS' in auth.permission"
+		"create": true,
+		"update": true,
+		"delete": true
 	},
 	"properties": {
 		"_id": {
@@ -31,19 +31,12 @@
 			"description": "头像地址",
 			"title": "头像地址",
 			"trim": "both",
-			"permission": {
-				"read": true,
-				"write": "doc._id == auth.uid || 'CREATE_UNI_ID_USERS' in auth.permission || 'UPDATE_UNI_ID_USERS' in auth.permission"
-			}
+			"defaultValue": ""
 		},
 		"avatar_file": {
 			"bsonType": "file",
 			"description": "用file类型方便使用uni-file-picker组件",
-			"title": "头像文件",
-			"permission": {
-				"read": true,
-				"write": "doc._id == auth.uid || 'CREATE_UNI_ID_USERS' in auth.permission || 'UPDATE_UNI_ID_USERS' in auth.permission"
-			}
+			"title": "头像文件"
 		},
 		"comment": {
 			"bsonType": "string",
@@ -207,11 +200,7 @@
 			"bsonType": "string",
 			"description": "用户昵称",
 			"title": "昵称",
-			"trim": "both",
-			"permission": {
-				"read": true,
-				"write": "doc._id == auth.uid || 'CREATE_UNI_ID_USERS' in auth.permission || 'UPDATE_UNI_ID_USERS' in auth.permission"
-			}
+			"trim": "both"
 		},
 		"password": {
 			"bsonType": "password",
@@ -330,7 +319,7 @@
 			},
 			"title": "角色"
 		},
-		"tags":{
+		"tags": {
 			"bsonType": "array",
 			"description": "用户标签",
 			"permission": {
@@ -386,11 +375,7 @@
 			"bsonType": "string",
 			"description": "用户名，不允许重复",
 			"title": "用户名",
-			"trim": "both",
-			"permission": {
-				"read": "doc._id == auth.uid || 'READ_UNI_ID_USERS' in auth.permission",
-				"write": "'CREATE_UNI_ID_USERS' in auth.permission || 'UPDATE_UNI_ID_USERS' in auth.permission"
-			}
+			"trim": "both"
 		},
 		"wx_openid": {
 			"bsonType": "object",

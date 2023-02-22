@@ -24,7 +24,7 @@
 				"$env": "uid"
 			}
 		},
-		"projectUser": {
+		"projectUsers": {
 			"description": "项目维护者",
 			"bsonType": "array",
 			"defaultValue": []

@@ -12,7 +12,7 @@
 			<view class="flex items-center justif-between mt-12">
 				<view>{{item.count}}</view>
 				<view>
-					<uni-icons :type="item.icon" color="#fff"></uni-icons>
+					<u-icon :name="item.icon" size="20" color="#fff"></u-icon>
 				</view>
 			</view>
 		</view>
@@ -20,6 +20,9 @@
 </template>
 
 <script lang="ts" setup>
+	import {
+		store
+	} from '../../uni_modules/uni-id-pages/common/store.js'
 	interface ListItem {
 		title: string
 		icon: string
@@ -27,22 +30,22 @@
 		count: number
 	}
 
-	const user = uni.getStorageSync('uni-id-pages-userInfo')
+	const user = store.userInfo
 	const list: ListItem[] = [{
 			title: '今日到期',
-			icon: 'chat',
+			icon: 'calendar',
 			bg: '#6f9ef6',
 			count: 0
 		},
 		{
 			title: '超期任务',
-			icon: 'notification',
+			icon: 'bell',
 			bg: '#fa8e8c',
 			count: 0
 		},
 		{
 			title: '待完成任务',
-			icon: 'compose',
+			icon: 'integral',
 			bg: '#98de6e',
 			count: 0
 		}
